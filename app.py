@@ -23,10 +23,19 @@ culmen_depth = st.number_input("culmen_depth_mm")
 flipper_length = st.number_input("flipper_length_mm")
 body_mass = st.number_input("body_mass_g")
 
+
+x_new =  pd.DataFrame() 
+x_new['island'] = ['Torgersen']
+x_new['culmen_length_mm'] = culmen_length
+x_new['culmen_depth_mm'] = culmen_depth
+x_new['flipper_length_mm'] = flipper_length
+x_new['body_mass_g'] = body_mass
+x_new['sex'] = ['MALE']
+
 # แปลงข้อมูล input ให้เป็น array
 input_features = np.array([culmen_length, culmen_depth, flipper_length, body_mass])
 
 # ปุ่มทำนาย
 if st.button("Predict"):
-    species = predict_penguin(input_features)
+    species = predict_penguin(x_new)
     st.write(f"The predicted species is: {species}")
